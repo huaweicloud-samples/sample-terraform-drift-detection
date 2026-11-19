@@ -1,0 +1,32 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.9.8",
+  "timestamp": "2026-01-01T12:00:00Z",
+  "resource_changes": [
+    {
+      "address": "huaweicloud_fgs_dependency.helper",
+      "mode": "managed",
+      "type": "huaweicloud_fgs_dependency",
+      "name": "helper",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "change": {
+        "actions": ["update"],
+        "before": {"dependency_type": 1, "name": "helper", "version": 2, "tags": {"Owner": "ops"}},
+        "after": {"dependency_type": 1, "name": "helper", "version": 2, "tags": {"Owner": "sre"}}
+      }
+    },
+    {
+      "address": "huaweicloud_cts_tracker.audit",
+      "mode": "managed",
+      "type": "huaweicloud_cts_tracker",
+      "name": "audit",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "change": {
+        "actions": ["update"],
+        "before": {"bucket_name": "audit-bucket", "tags": null},
+        "after": {"bucket_name": "audit-bucket", "tags": {"Env": "prod"}}
+      }
+    }
+  ],
+  "diagnostics": []
+}

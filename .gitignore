@@ -1,0 +1,30 @@
+# Python 运行与校验产物
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+venv/
+.venv/
+
+# 代码包构建产物：由 scripts/package_functions.py 生成，随部署脚本上传，不入库
+src/functions/build/
+build/
+
+# Terraform 本地状态与临时文件
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+*.tfplan
+crash.log
+crash.*.log
+infra/terraform.tfvars
+
+# 编辑器与系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

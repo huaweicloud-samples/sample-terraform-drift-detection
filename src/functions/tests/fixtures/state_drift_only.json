@@ -1,0 +1,27 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.9.8",
+  "timestamp": "2026-01-03T00:00:00Z",
+  "resource_changes": [],
+  "resource_drift": [
+    {
+      "address": "huaweicloud_vpc_subnet.private",
+      "mode": "managed",
+      "type": "huaweicloud_vpc_subnet",
+      "name": "private",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "previous": {"cidr": "192.168.0.0/24", "gateway_ip": "192.168.0.1"},
+      "new": {"cidr": "192.168.9.0/24", "gateway_ip": "192.168.0.1"}
+    },
+    {
+      "address": "huaweicloud_cts_tracker.audit",
+      "mode": "managed",
+      "type": "huaweicloud_cts_tracker",
+      "name": "audit",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "previous": {"bucket_name": "audit-bucket", "tags": {"Env": "prod"}},
+      "new": {"bucket_name": "audit-bucket", "tags": {"Env": "dev"}}
+    }
+  ],
+  "diagnostics": []
+}

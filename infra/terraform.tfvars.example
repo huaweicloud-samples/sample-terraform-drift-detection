@@ -1,0 +1,75 @@
+# =============================================================================
+# 输入示例：复制为 terraform.tfvars 后按自己的环境填写
+#
+# 凭据不要写进本文件：在 shell 中导出 HW_ACCESS_KEY / HW_SECRET_KEY
+# （临时安全令牌另加 HW_SECURITY_TOKEN），provider 会自动读取。
+# =============================================================================
+
+region        = "cn-east-3"
+name_prefix   = "tf-drift"
+
+# 接收漂移告警的邮箱；主题订阅创建后需在邮件中点击确认，否则收不到通知
+notification_email = "ops@example.com"
+
+# 巡检周期：6 段 Cron（秒 分 时 日 月 周），「周」与「日」不能同时为 *
+schedule_cron = "0 0 */6 * * ?"
+
+# -----------------------------------------------------------------------------
+# 构建执行环境：以下三项取自自己账号的 CodeArts 环境
+#   构建机规格  → CodeArts 构建 · 新建任务 · 构建环境规格下拉列表
+#   代码源类型  → 同上 · 代码源类型下拉列表
+#   插件模块 ID → 同上 · 构建步骤所选插件的模块 ID
+# -----------------------------------------------------------------------------
+
+build_machine_flavor = "<BUILD_MACHINE_FLAVOR>"
+build_scm_type       = "<BUILD_SCM_TYPE>"
+build_scm_url        = "<BUILD_SCM_URL>"
+build_step_module_id = "<BUILD_STEP_MODULE_ID>"
+
+# 构建机内执行巡检与修复的命令参数，随所选插件而异；
+# 使用「Shell 脚本」类插件时通常是脚本路径或脚本内容。
+plan_build_step_properties = {
+  SCRIPT_PATH = "buildscripts/plan.sh"
+}
+
+apply_build_step_properties = {
+  SCRIPT_PATH = "buildscripts/apply.sh"
+}
+
+# -----------------------------------------------------------------------------
+# 自定义指标与大盘
+#   命名空间须为 service.item 格式（仅字母、数字与下划线，3-32 字符）
+#   view: bar | line | bar_chart | table | circular_bar | area_chart
+#   metric_display_mode: single | multiple
+#   filter_type: all_instances | specific_instances
+# -----------------------------------------------------------------------------
+
+ces_metric_namespace           = "drift_detection.custom"
+metric_dimension_name          = "Pipeline"
+metric_dimension_value         = "drift-detection"
+
+enable_dashboard               = true
+dashboard_widget_view          = "line"
+dashboard_metric_display_mode  = "multiple"
+dashboard_dimension_filter_type = "specific_instances"
+
+# -----------------------------------------------------------------------------
+# 函数运行权限委托：角色名须与 IAM 权限列表一致，且按全局级 / 项目级分开放置
+# -----------------------------------------------------------------------------
+
+agency_domain_roles = [
+  "OBS Administrator",
+  "KMS CMK Decrypter",
+]
+
+agency_project_roles = [
+  "FunctionGraph FullAccess",
+  "SMN FullAccess",
+  "CES FullAccess",
+  "CodeArts Build CommonOperator",
+]
+
+tags = {
+  ManagedBy = "terraform"
+  Pattern   = "drift-detection"
+}
