@@ -1,0 +1,99 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.9.8",
+  "timestamp": "2026-01-01T00:00:00Z",
+  "variables": {},
+  "planned_values": {},
+  "resource_changes": [
+    {
+      "address": "huaweicloud_networking_secgroup_rule.allow_any_ssh",
+      "mode": "managed",
+      "type": "huaweicloud_networking_secgroup_rule",
+      "name": "allow_any_ssh",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "change": {
+        "actions": ["create"],
+        "before": null,
+        "after": {
+          "secgroup_id": "8f2a1c0d-0000-0000-0000-000000000001",
+          "ip_protocol": "tcp",
+          "port": "22",
+          "cidr": "0.0.0.0/0",
+          "description": null,
+          "tags": null
+        }
+      }
+    },
+    {
+      "address": "huaweicloud_obs_bucket_policy.reports_agency",
+      "mode": "managed",
+      "type": "huaweicloud_obs_bucket_policy",
+      "name": "reports_agency",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "change": {
+        "actions": ["delete", "create"],
+        "before": {
+          "bucket": "tf-drift-reports-example",
+          "policy_format": "obs",
+          "policy": "{\"Version\":\"2008-10-17\"}"
+        },
+        "after": {
+          "bucket": "tf-drift-reports-example",
+          "policy_format": "obs",
+          "policy": "{\"Version\":\"2008-10-17\",\"Statement\":[]}"
+        },
+        "replace_paths": [["policy"]]
+      }
+    },
+    {
+      "address": "huaweicloud_obs_bucket.reports",
+      "mode": "managed",
+      "type": "huaweicloud_obs_bucket",
+      "name": "reports",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "change": {
+        "actions": ["no-op"],
+        "before": {"bucket": "tf-drift-reports-example", "tags": {"Env": "prod"}},
+        "after": {"bucket": "tf-drift-reports-example", "tags": {"Env": "prod"}}
+      }
+    },
+    {
+      "address": "data.huaweicloud_availability_zones.names",
+      "mode": "data",
+      "type": "huaweicloud_availability_zones",
+      "name": "names",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "change": {
+        "actions": ["read"],
+        "before": null,
+        "after": {"names": ["cn-north-4a", "cn-north-4b"]}
+      }
+    },
+    {
+      "address": "huaweicloud_lts_stream.orchestrator",
+      "mode": "managed",
+      "type": "huaweicloud_lts_stream",
+      "name": "orchestrator",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "change": {
+        "actions": ["update"],
+        "before": {"group_id": "lg-1", "stream_name": "orchestrator", "ttl": 7, "tags": null},
+        "after": {"group_id": "lg-1", "stream_name": "orchestrator", "ttl": 7, "tags": {"Purpose": "audit"}}
+      }
+    },
+    {
+      "address": "huaweicloud_fgs_dependency.helper",
+      "mode": "managed",
+      "type": "huaweicloud_fgs_dependency",
+      "name": "helper",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "change": {
+        "actions": ["update"],
+        "before": {"dependency_type": 1, "version": 2, "tags": {"Owner": "ops"}},
+        "after": {"dependency_type": 1, "version": 2, "tags": {"Owner": "sre"}}
+      }
+    }
+  ],
+  "configuration": {},
+  "diagnostics": []
+}

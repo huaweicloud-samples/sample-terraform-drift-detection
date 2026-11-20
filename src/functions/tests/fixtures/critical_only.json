@@ -1,0 +1,38 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.9.8",
+  "timestamp": "2026-01-01T06:00:00Z",
+  "resource_changes": [
+    {
+      "address": "huaweicloud_identity_group_role_assignment.pipeline_admin",
+      "mode": "managed",
+      "type": "huaweicloud_identity_group_role_assignment",
+      "name": "pipeline_admin",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "change": {
+        "actions": ["delete"],
+        "before": {"role_id": "r-1", "group_id": "g-1"},
+        "after": null
+      }
+    },
+    {
+      "address": "huaweicloud_networking_secgroup.pipeline",
+      "mode": "managed",
+      "type": "huaweicloud_networking_secgroup",
+      "name": "pipeline",
+      "provider_name": "registry.terraform.io/huaweicloud/huaweicloud",
+      "change": {
+        "actions": ["update"],
+        "before": {"name": "tf-drift-sg", "description": "managed"},
+        "after": {"name": "tf-drift-sg", "description": "open"}
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "severity": "warning",
+      "summary": "资源属性由外部改动",
+      "detail": "受管资源的访问控制配置与代码声明不一致"
+    }
+  ]
+}
